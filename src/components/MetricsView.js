@@ -1,7 +1,7 @@
 // import { useState } from "react";
 
 import MetricsSummaryContainer from "./MetricsSummaryContainer";
-import MetricsGraphView from "./MetricsGraphView";
+import MetricGraphView from "./MetricGraphView";
 
 const MetricsView = ({ metrics }) => {
   // array index of selected metric
@@ -10,9 +10,9 @@ const MetricsView = ({ metrics }) => {
   // const handleSelectMetric = () => setSelectedMetric();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="w-1/2 flex flex-col gap-4">
       <MetricsSummaryContainer metrics={metrics.slice(1)} />
-      <MetricsGraphView />
+      <MetricGraphView />
     </div>
   );
 };

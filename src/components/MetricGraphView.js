@@ -1,4 +1,4 @@
-const MetricsGraphView = () => {
+const MetricGraphView = () => {
   return (
     <div className="bg-orange-600">
       <h1>Metrics Graph</h1>
@@ -6,4 +6,4 @@ const MetricsGraphView = () => {
   );
 };
 
-export default MetricsGraphView;
+export default MetricGraphView;

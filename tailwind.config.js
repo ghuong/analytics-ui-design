@@ -4,6 +4,8 @@ module.exports = {
     extend: {
       colors: {
         gray: "#e8e8e8",
+        medium_sea_green: "#64c454",
+        tomato: "#e9433c",
       },
     },
   },
