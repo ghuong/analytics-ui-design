@@ -1,23 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import { metrics } from "./metricsData";
+
+import MetricsView from "./components/MetricsView";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header mt-4">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen flex justify-center items-center bg-gray">
+      <MetricsView metrics={metrics} />
     </div>
   );
 }
