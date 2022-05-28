@@ -10,11 +10,11 @@ const iconColors = {
 
 // TailwindCSS utility classnames
 const iconBgColors = {
-  purple: "bg-purple-500/20",
-  red: "bg-red-500/20",
-  green: "bg-lime-600/20",
-  blue: "bg-blue-500/20",
-  orange: "bg-orange-500/20",
+  purple: "bg-purple-500/16",
+  red: "bg-red-500/10",
+  green: "bg-lime-600/10",
+  blue: "bg-blue-500/10",
+  orange: "bg-orange-500/10",
 }
 
 export const metrics = [

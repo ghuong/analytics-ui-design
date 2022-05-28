@@ -4,7 +4,7 @@ import MetricsView from "./components/MetricsView";
 
 function App() {
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray">
+    <div className="min-h-screen flex justify-center items-center bg-gray_custom">
       <MetricsView metrics={metrics} />
     </div>
   );

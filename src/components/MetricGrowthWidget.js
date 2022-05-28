@@ -1,7 +1,7 @@
 const MetricGrowthWidget = ({ growthPercent, growthPeriodInDays }) => {
   let growthTextColor = "text-medium_sea_green";
   let scaleGrowthIcon = "";
-  if (growthPercent < 0) {
+  if (growthPercent < 0) { // negative growth
     growthTextColor = "text-tomato";
     scaleGrowthIcon = "-scale-y-100";
   }
@@ -10,15 +10,15 @@ const MetricGrowthWidget = ({ growthPercent, growthPeriodInDays }) => {
   if (growthPeriodInDays > 1) growthPeriodText += "S"; // pluralize DAYS
 
   return (
-    <div className="flex">
-      <div className={`w-5 h-5 ${growthTextColor}`}>
+    <div className="flex gap-2 items-center">
+      <div className={` w-4 h-4 ${growthTextColor}`}>
         <svg role="img" className={`w-full h-full ${scaleGrowthIcon}`}>
           <title>Growth Chart Icon</title>
           <use href="./images/growth_chart_icon.svg#icon" />
         </svg>
       </div>
-      <p className={growthTextColor}>{growthPercent}%</p>
-      <p className="text-gray-400">{growthPeriodText}</p>
+      <p className={`${growthTextColor} font-medium`}>{Math.abs(growthPercent)}%</p>
+      <p className="text-gray-400 text-sm ml-1">{growthPeriodText}</p>
     </div>
   );
 };

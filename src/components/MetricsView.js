@@ -10,7 +10,7 @@ const MetricsView = ({ metrics }) => {
   // const handleSelectMetric = () => setSelectedMetric();
 
   return (
-    <div className="w-1/2 flex flex-col gap-4">
+    <div className="w-5/6 max-w-2xl flex flex-col gap-4">
       <MetricsSummaryContainer metrics={metrics.slice(1)} />
       <MetricGraphView />
     </div>
