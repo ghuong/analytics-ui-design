@@ -1,17 +1,14 @@
 import MetricCard from "./widgets/MetricCard";
-import GridWrapper from "./wrappers/GridWrapper";
 
 const MetricsSummaryContainer = ({ metrics }) => {
   return (
-    <div className="bg-gray-200">
-      <GridWrapper>
-        {metrics.map((metric) => (
-          <li key={metric.name}>
-            <MetricCard metric={metric} />
-          </li>
-        ))}
-      </GridWrapper>
-    </div>
+    <ul className="bg-gray-200 grid grid-cols-2 gap-0.5">
+      {metrics.map((metric) => (
+        <li key={metric.name}>
+          <MetricCard metric={metric} />
+        </li>
+      ))}
+    </ul>
   );
 };
 
