@@ -28,20 +28,25 @@ const MetricCard = ({ metric }) => {
   }
 
   return (
-    <div className="bg-white px-5 py-6 h-full flex flex-col justify-between gap-2">
+    <div className="bg-white pt-6 pr-5 pl-6 pb-6 flex flex-col justify-between gap-2">
       <div className="flex justify-between">
         <div>
           <h2 className="text-lg">{name}</h2>
-          <p className="text-3xl mt-2 font-medium">{valueText}</p>
+          <p className="text-4xl mt-2 font-medium">{valueText}</p>
         </div>
-        <div className={`w-10 h-10 p-2.5 rounded-full ${iconColor} ${iconBgColor}`}>
+        <div
+          className={`w-12 h-12 p-3 rounded-full ${iconColor} ${iconBgColor}`}
+        >
           <svg role="img" className="w-full h-full">
             <title>{iconAlt}</title>
             <use href={iconSrc} />
           </svg>
         </div>
       </div>
-      <MetricGrowthWidget growthPercent={growthPercent} growthPeriodInDays={growthPeriodInDays} />
+      <MetricGrowthWidget
+        growthPercent={growthPercent}
+        growthPeriodInDays={growthPeriodInDays}
+      />
     </div>
   );
 };
