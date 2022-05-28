@@ -28,11 +28,11 @@ const MetricCard = ({ metric }) => {
   }
 
   return (
-    <div className="bg-white pt-6 pr-5 pl-6 pb-6 flex flex-col justify-between gap-2">
+    <div className="bg-white p-6 flex flex-col justify-between gap-2">
       <div className="flex justify-between">
         <div>
           <h2 className="text-lg">{name}</h2>
-          <p className="text-4xl mt-2 font-medium">{valueText}</p>
+          <p className="text-4xl mt-2">{valueText}</p>
         </div>
         <div
           className={`w-12 h-12 p-3 rounded-full ${iconColor} ${iconBgColor}`}
@@ -45,7 +45,7 @@ const MetricCard = ({ metric }) => {
       </div>
       <MetricGrowthWidget
         growthPercent={growthPercent}
-        growthPeriodInDays={growthPeriodInDays}
+        daysAgo={growthPeriodInDays}
       />
     </div>
   );

@@ -2,6 +2,7 @@
 
 import MetricsSummaryContainer from "./MetricsSummaryContainer";
 import MetricGraphView from "./MetricGraphView";
+import RoundedPanelWrapper from "./wrappers/RoundedPanelWrapper";
 
 const MetricsView = ({ metrics }) => {
   // array index of selected metric
@@ -10,9 +11,14 @@ const MetricsView = ({ metrics }) => {
   // const handleSelectMetric = () => setSelectedMetric();
 
   return (
-    <div className="w-5/6 max-w-2xl my-10 sm:my-0 flex flex-col gap-6">
-      <MetricsSummaryContainer metrics={metrics.slice(1)} />
-      <MetricGraphView />
+    <div className="w-5/6 max-w-2xl flex flex-col gap-6">
+      <RoundedPanelWrapper>
+        <MetricsSummaryContainer metrics={metrics.slice(1)} />
+      </RoundedPanelWrapper>
+
+      <RoundedPanelWrapper>
+        <MetricGraphView />
+      </RoundedPanelWrapper>
     </div>
   );
 };
