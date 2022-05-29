@@ -1,4 +1,4 @@
-const DayWeekMonthSelector = ({ selected, onClick }) => {
+const DayWeekMonthSelector = ({ selected, onSelect }) => {
   const choices = ["Day", "Week", "Month"];
 
   const buttons = choices.map((selection) => {
@@ -9,6 +9,7 @@ const DayWeekMonthSelector = ({ selected, onClick }) => {
         className={`${buttonColor} py-1 px-3 text-xl`}
         value={value}
         key={value}
+        onClick={onSelect}
       >
         {selection}
       </button>
