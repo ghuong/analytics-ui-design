@@ -1,4 +1,4 @@
-const MetricGrowthWidget = ({ growthPercent, daysAgo, displayInline = true }) => {
+const MetricGrowthWidget = ({ growthPercent, daysAgo, displayVertically = false }) => {
   let growthTextColor = "text-medium_sea_green";
   let scaleGrowthIcon = "";
   if (growthPercent < 0) { // negative growth
@@ -9,21 +9,21 @@ const MetricGrowthWidget = ({ growthPercent, daysAgo, displayInline = true }) =>
   let daysAgoText = `VS PREV. ${daysAgo} DAY`;
   if (daysAgo > 1) daysAgoText += "S"; // pluralize DAYS
 
-  let flexClassnames = "flex-col gap-1";
-  if (displayInline) {
-    flexClassnames = "items-center gap-2";
+  let flexClassnames = "items-center gap-2";;
+  if (displayVertically) {
+    flexClassnames = "flex-col gap-0.5";
   }
 
   return (
     <div className={`flex ${flexClassnames}`}>
-      <div className="flex gap-2 items-center mr-0.5">
-        <div className={`w-4 h-4 ${growthTextColor}`}>
+      <div className="flex gap-2.5 items-center mr-1">
+        <div className={` w-5 h-5 ${growthTextColor}`}>
           <svg role="img" className={`w-full h-full ${scaleGrowthIcon}`}>
             <title>Growth Chart Icon</title>
             <use href="./images/growth_chart_icon.svg#icon" />
           </svg>
         </div>
-        <p className={`${growthTextColor} font-medium`}>
+        <p className={`${growthTextColor} text-lg font-medium`}>
           {Math.abs(growthPercent)}%
         </p>
       </div>

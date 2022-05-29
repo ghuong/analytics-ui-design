@@ -2,13 +2,15 @@ import MetricCard from "./widgets/MetricCard";
 
 const MetricsSummaryContainer = ({ metrics }) => {
   return (
-    <ul className="bg-gray-200 grid grid-cols-2 gap-0.5">
-      {metrics.map((metric) => (
-        <li key={metric.name}>
-          <MetricCard metric={metric} />
-        </li>
-      ))}
-    </ul>
+    <section className="bg-gray-200">
+      <ul className="grid grid-cols-2 gap-0.5">
+        {metrics.map((metric) => (
+          <li key={metric.name}>
+            <MetricCard metric={metric} />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

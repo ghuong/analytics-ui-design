@@ -17,7 +17,7 @@ const MetricsView = ({ metrics }) => {
       </RoundedPanelWrapper>
 
       <RoundedPanelWrapper>
-        <MetricGraphView />
+        <MetricGraphView metric={metrics[0]} />
       </RoundedPanelWrapper>
     </div>
   );

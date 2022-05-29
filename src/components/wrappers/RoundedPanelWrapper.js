@@ -1,8 +1,8 @@
 const RoundedPanelWrapper = ({ children }) => {
   return (
-    <section className="rounded-lg overflow-hidden drop-shadow-md">
+    <div className=" rounded-xl overflow-hidden drop-shadow-md">
       {children}
-    </section>
+    </div>
   );
 };
 

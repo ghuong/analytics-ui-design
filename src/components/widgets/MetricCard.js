@@ -1,3 +1,4 @@
+import { formatMetricValue } from "../../utils/textFormatting";
 import MetricGrowthWidget from "./MetricGrowthWidget";
 
 const MetricCard = ({ metric }) => {
@@ -13,29 +14,21 @@ const MetricCard = ({ metric }) => {
     iconBgColor,
   } = metric;
 
-  let valueText = value;
-  switch (units) {
-    case "sec":
-      valueText += " sec";
-      break;
-    case "":
-      if (value > 1000) {
-        valueText = (value / 1000).toFixed(2) + "K";
-      }
-      break;
-    default:
-      valueText += units;
-  }
+  const valueText = formatMetricValue(value, units);
 
   return (
-    <div className="bg-white p-6 flex flex-col justify-between gap-2">
-      <div className="flex justify-between">
-        <div>
-          <h2 className="text-lg">{name}</h2>
-          <p className="text-4xl mt-2">{valueText}</p>
+    <div className="bg-white p-6">
+      <div className="relative">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-lg">{name}</h3>
+          <p className="text-4xl">{valueText}</p>
+          <MetricGrowthWidget
+            growthPercent={growthPercent}
+            daysAgo={growthPeriodInDays}
+          />
         </div>
         <div
-          className={`w-12 h-12 p-3 rounded-full ${iconColor} ${iconBgColor}`}
+          className={`absolute top-0 right-0 w-12 h-12 p-3 rounded-full ${iconColor} ${iconBgColor}`}
         >
           <svg role="img" className="w-full h-full">
             <title>{iconAlt}</title>
@@ -43,10 +36,6 @@ const MetricCard = ({ metric }) => {
           </svg>
         </div>
       </div>
-      <MetricGrowthWidget
-        growthPercent={growthPercent}
-        daysAgo={growthPeriodInDays}
-      />
     </div>
   );
 };
