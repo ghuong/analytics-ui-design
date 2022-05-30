@@ -28,7 +28,6 @@ export const metricsMetadata = [
     growthPercentLastDay: 2.6,
     growthPercentLastWeek: 12.4,
     growthPercentLastMonth: 83,
-    // growthPeriodInDays: 1, ////
     iconSrc: "./images/eye_heroicon.svg#icon",
     iconAlt: "Eye Icon", // icon alt text
     iconColor: iconColors.purple,

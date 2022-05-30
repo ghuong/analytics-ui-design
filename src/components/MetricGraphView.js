@@ -69,19 +69,13 @@ const MetricGraphView = ({ metric }) => {
   const dataAverage =
     graphData.reduce((prev, curr) => prev + curr[metric.name], 0) /
     graphData.length;
-  // for (let i = 0; i < yTicks.length; i++) {
-  //   if (dataAverage <= yTicks[i]) {
-  //     yTicks.splice(i, 0, dataAverage);
-  //     break;
-  //   }
-  // }
 
   return (
-    <section className="bg-white p-6">
+    <section className="bg-white p-6 pb-3">
       <div className="relative">
         <div className="flex flex-col gap-3">
           <h2 className="text-2xl">{name}</h2>
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-5 items-center mb-1">
             <p className="text-5xl font-medium">{valueText}</p>
             <MetricGrowthWidget
               growthPercent={growthPercent}

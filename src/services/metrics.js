@@ -25,7 +25,6 @@ export const getAllMetrics = () => {
     last28DaysData = last28DaysData.map((dataObj, idx) => {
       const month = dataObj.date.toLocaleString("en-US", { month: "short" });
       const dayOfMonth = dataObj.date.getDate();
-      // const dateLabel = (idx - 1) % 4 === 0 ? `${month} ${dayOfMonth}` : "";
       const dateLabel = `${month} ${dayOfMonth}`;
       return {
         ...dataObj,
@@ -48,7 +47,6 @@ function generateFakeTimeseriesData(
   hoursPerInterval,
   valueLabel,
   dateLabelStyle = "hourly"
-  // dateLabelStep = 4
 ) {
   const today = new Date();
   const now = today.getTime();
