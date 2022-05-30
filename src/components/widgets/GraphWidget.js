@@ -6,6 +6,7 @@ import {
   Tooltip,
   Area,
   ResponsiveContainer,
+  ReferenceLine,
 } from "recharts";
 
 import "./GraphWidget.css";
@@ -13,9 +14,18 @@ import "./GraphWidget.css";
 const GraphWidget = ({
   valuesLabel,
   data,
-  color = "#8884d8",
-  ticksArray = [],
+  dataAverage,
+  color = "#067dfb",
+  xTicks = [],
+  yTicks = [],
 }) => {
+  const formatYAxis = (value) => {
+    if (value === 1500) return "1.5K";
+    else if (value === 2500) return "2.5K";
+    // else if (value === Math.floor(dataAverage)) return "AVG";
+    else return "";
+  };
+
   return (
     <ResponsiveContainer width="100%" height={250}>
       <AreaChart data={data}>
@@ -25,16 +35,41 @@ const GraphWidget = ({
             <stop offset="95%" stopColor={color} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="dateLabel" ticks={ticksArray} interval={0} />
-        <YAxis dataKey={valuesLabel} tickCount={6} hide={true} />
+        <XAxis
+          dataKey="dateLabel"
+          ticks={xTicks}
+          tick={{ fill: "gray" }}
+          interval={0}
+          stroke="lightgray"
+        />
+        <YAxis
+          dataKey={valuesLabel}
+          domain={[0, (dataMax) => dataMax * 1.1]}
+          ticks={yTicks}
+          tick={{ fill: "gray" }}
+          tickFormatter={formatYAxis}
+          orientation="right"
+          axisLine={false}
+          tickLine={false}
+          padding={0}
+          margin={0}
+        />
         <CartesianGrid />
         <Tooltip />
         <Area
           type="monotone"
           dataKey={valuesLabel}
           stroke={color}
-          fillOpacity={1}
+          strokeWidth={3.5}
+          fillOpacity={0.2}
           fill="url(#color)"
+        />
+        <ReferenceLine
+          y={dataAverage}
+          label={{ value:"AVG", fill: "darkorange", position: "right", fontWeight: "bold" }}
+          stroke="darkorange"
+          strokeDasharray="8 8"
+          strokeWidth={1.5}
         />
       </AreaChart>
     </ResponsiveContainer>

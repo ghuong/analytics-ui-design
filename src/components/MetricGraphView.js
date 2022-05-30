@@ -8,7 +8,10 @@ import ButtonGroup from "./widgets/ButtonGroup";
 const MetricGraphView = ({ metric }) => {
   const {
     name,
-    currentValue,
+    cumulativeValue,
+    growthPercentLastDay,
+    growthPercentLastWeek,
+    growthPercentLastMonth,
     units,
     last24HoursData,
     last28DaysData,
@@ -24,16 +27,17 @@ const MetricGraphView = ({ metric }) => {
   const handleTimePeriodChange = (event) =>
     setTimePeriodIndex(Number(event.target.value));
 
-  const valueText = formatMetricValue(currentValue, units);
+  const valueText = formatMetricValue(cumulativeValue, units);
+
+  let growthPercent;
 
   let graphData;
-  let startingValue;
-  let ticksArray;
+  let xTicks;
+  let yTicks = [0, 750, 1500, 2000, 2500];
 
   if (timePeriods[timePeriodIndex].name.toLowerCase() === "month") {
     graphData = last28DaysData;
-    startingValue = last28DaysData[0][metric.name];
-    ticksArray = last28DaysData
+    xTicks = last28DaysData
       .filter((dataObj, idx) => {
         if (idx === 0 || idx === last28DaysData.length - 1) return false;
 
@@ -41,14 +45,15 @@ const MetricGraphView = ({ metric }) => {
         return dayOfMonth % 4 === 0;
       })
       .map((dataObj) => dataObj.dateLabel);
+    
+      growthPercent = growthPercentLastMonth;
   } else if (timePeriods[timePeriodIndex].name.toLowerCase() === "week") {
     graphData = last7DaysData;
-    startingValue = last7DaysData[0][metric.name];
-    ticksArray = null;
+    xTicks = null;
+    growthPercent = growthPercentLastWeek;
   } else {
     graphData = last24HoursData;
-    startingValue = last24HoursData[0][metric.name];
-    ticksArray = last24HoursData
+    xTicks = last24HoursData
       .filter((dataObj, idx) => {
         if (idx === 0 || idx === last24HoursData.length - 1) return false;
 
@@ -58,9 +63,18 @@ const MetricGraphView = ({ metric }) => {
         return hour % 4 === 0; // only display hours which are multiples of 4
       })
       .map((dataObj) => dataObj.dateLabel);
+    growthPercent = growthPercentLastDay;
   }
 
-  const growthPercent = (currentValue / startingValue - 1) * 100;
+  const dataAverage =
+    graphData.reduce((prev, curr) => prev + curr[metric.name], 0) /
+    graphData.length;
+  // for (let i = 0; i < yTicks.length; i++) {
+  //   if (dataAverage <= yTicks[i]) {
+  //     yTicks.splice(i, 0, dataAverage);
+  //     break;
+  //   }
+  // }
 
   return (
     <section className="bg-white p-6">
@@ -78,7 +92,10 @@ const MetricGraphView = ({ metric }) => {
           <GraphWidget
             valuesLabel={metric.name}
             data={graphData}
-            ticksArray={ticksArray}
+            xTicks={xTicks}
+            yTicks={yTicks}
+            graphColor="#067dfb"
+            dataAverage={dataAverage}
           />
         </div>
 

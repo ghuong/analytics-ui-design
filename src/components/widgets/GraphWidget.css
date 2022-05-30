@@ -11,5 +11,5 @@
 }
 
 .recharts-wrapper .recharts-cartesian-grid-vertical line {
-  stroke-dasharray: 3 3;
+  stroke-dasharray: 8 8;
 }

@@ -20,15 +20,18 @@ const iconBgColors = {
 export const metricsMetadata = [
   {
     name: "Views",
-    value28DaysAgo: 10458,
-    value24HoursAgo: 12382,
-    currentValue: 12700, ////
+    value28DaysAgo: 1190,
+    value24HoursAgo: 1623,
+    currentValue: 1443,
+    cumulativeValue: 12700,
     units: "",
-    // growthPercent: 2.6, ////
+    growthPercentLastDay: 2.6,
+    growthPercentLastWeek: 12.4,
+    growthPercentLastMonth: 83,
     // growthPeriodInDays: 1, ////
     iconSrc: "./images/eye_heroicon.svg#icon",
     iconAlt: "Eye Icon", // icon alt text
-    iconColor: iconColors.purple, 
+    iconColor: iconColors.purple,
     iconBgColor: iconBgColors.purple, // tailwindcss utility name
   },
   {
