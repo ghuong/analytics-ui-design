@@ -1,0 +1,15 @@
+/* Remove top and botton horizontal lines of cartesian grid */
+.recharts-wrapper .recharts-cartesian-grid-horizontal line:first-child,
+.recharts-wrapper .recharts-cartesian-grid-horizontal line:last-child {
+  stroke-opacity: 0;
+}
+
+/* Remove first and last vertical lines of cartesian grid */
+.recharts-wrapper .recharts-cartesian-grid-vertical line:last-child,
+.recharts-wrapper .recharts-cartesian-grid-vertical line:nth-last-child(2) {
+  stroke-opacity: 0;
+}
+
+.recharts-wrapper .recharts-cartesian-grid-vertical line {
+  stroke-dasharray: 3 3;
+}

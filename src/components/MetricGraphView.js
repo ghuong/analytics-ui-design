@@ -6,7 +6,14 @@ import GraphWidget from "./widgets/GraphWidget";
 import ButtonGroup from "./widgets/ButtonGroup";
 
 const MetricGraphView = ({ metric }) => {
-  const { name, currentValue, units, last24HoursData, last28DaysData } = metric;
+  const {
+    name,
+    currentValue,
+    units,
+    last24HoursData,
+    last28DaysData,
+    last7DaysData,
+  } = metric;
 
   const timePeriods = [
     { name: "Day", numDays: 1 },
@@ -19,17 +26,41 @@ const MetricGraphView = ({ metric }) => {
 
   const valueText = formatMetricValue(currentValue, units);
 
-  let graphData = last24HoursData;
-  let startingValue = last24HoursData[0].value;
+  let graphData;
+  let startingValue;
+  let ticksArray;
+
   if (timePeriods[timePeriodIndex].name.toLowerCase() === "month") {
-    graphData = last28DaysData; // last month
-    startingValue = last28DaysData[0].value;
+    graphData = last28DaysData;
+    startingValue = last28DaysData[0][metric.name];
+    ticksArray = last28DaysData
+      .filter((dataObj, idx) => {
+        if (idx === 0 || idx === last28DaysData.length - 1) return false;
+
+        const dayOfMonth = dataObj.date.getDate();
+        return dayOfMonth % 4 === 0;
+      })
+      .map((dataObj) => dataObj.dateLabel);
   } else if (timePeriods[timePeriodIndex].name.toLowerCase() === "week") {
-    graphData = last28DaysData.slice(21); // last 7 days
-    startingValue = last28DaysData[21].value;
+    graphData = last7DaysData;
+    startingValue = last7DaysData[0][metric.name];
+    ticksArray = null;
+  } else {
+    graphData = last24HoursData;
+    startingValue = last24HoursData[0][metric.name];
+    ticksArray = last24HoursData
+      .filter((dataObj, idx) => {
+        if (idx === 0 || idx === last24HoursData.length - 1) return false;
+
+        const hour = Number(
+          dataObj.dateLabel.slice(0, dataObj.dateLabel.length - 3)
+        );
+        return hour % 4 === 0; // only display hours which are multiples of 4
+      })
+      .map((dataObj) => dataObj.dateLabel);
   }
 
-  const growthPercent = ((currentValue / startingValue) - 1) * 100;
+  const growthPercent = (currentValue / startingValue - 1) * 100;
 
   return (
     <section className="bg-white p-6">
@@ -44,7 +75,11 @@ const MetricGraphView = ({ metric }) => {
               displayVertically={true}
             />
           </div>
-          <GraphWidget data={graphData} />
+          <GraphWidget
+            valuesLabel={metric.name}
+            data={graphData}
+            ticksArray={ticksArray}
+          />
         </div>
 
         <div className="absolute top-0 right-0">
