@@ -17,13 +17,15 @@ const iconBgColors = {
   orange: "bg-orange-500/10",
 }
 
-export const metrics = [
+export const metricsMetadata = [
   {
     name: "Views",
-    value: 12700,
+    value28DaysAgo: 10458,
+    value24HoursAgo: 12382,
+    currentValue: 12700, ////
     units: "",
-    growthPercent: 2.6,
-    growthPeriodInDays: 1,
+    // growthPercent: 2.6, ////
+    // growthPeriodInDays: 1, ////
     iconSrc: "./images/eye_heroicon.svg#icon",
     iconAlt: "Eye Icon", // icon alt text
     iconColor: iconColors.purple, 

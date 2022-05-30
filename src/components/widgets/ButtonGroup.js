@@ -1,14 +1,11 @@
-const DayWeekMonthSelector = ({ selected, onSelect }) => {
-  const choices = ["Day", "Week", "Month"];
-
-  const buttons = choices.map((selection) => {
-    const value = selection.toLowerCase();
-    const buttonColor = value === selected ? "bg-gray-100" : "bg-white";
+const ButtonGroup = ({ selections, selectedIndex, onSelect }) => {
+  const buttons = selections.map((selection, idx) => {
+    const buttonColor = idx === selectedIndex ? "bg-gray-100" : "bg-white";
     return (
       <button
         className={`${buttonColor} py-1 px-3 text-xl`}
-        value={value}
-        key={value}
+        value={idx}
+        key={selection}
         onClick={onSelect}
       >
         {selection}
@@ -23,4 +20,4 @@ const DayWeekMonthSelector = ({ selected, onSelect }) => {
   );
 };
 
-export default DayWeekMonthSelector;
+export default ButtonGroup;

@@ -1,8 +1,9 @@
-import { metrics } from "./metricsData";
-
+import { getAllMetrics } from "./services/metrics";
 import MetricsView from "./components/MetricsView";
 
 function App() {
+  const metrics = getAllMetrics();
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray_custom">
       <MetricsView metrics={metrics} />
